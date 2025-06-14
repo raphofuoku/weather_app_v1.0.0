@@ -51,7 +51,7 @@ cd skyvibe
 
 ### 2. Open the app
 
-Simply open index.html in your browser.
-No build tools or dependencies required – pure frontend app.
+- Simply open index.html in your browser.
+- No build tools or dependencies required – pure frontend app.
 
 ---
