@@ -1,32 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather App</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyVibe - Weather That Moves You</title>
+    <meta name="description" content="Modern weather app with beautiful visuals and accessibility features">
+
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="/styles/style.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img src="img/logo.png" alt="Weather App Logo" class="logo" />
-    </div>
-  </header>
+    <!-- Skip to content link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <section class="container">
-    <div> <h1>Weather App</h1></div>
-    <div class="weather-form">
-      <input type="text" id="city-input" placeholder="Enter city name..." />
-      <button id="get-weather-btn">Get Weather</button>
-    </div>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+        <i class="fas fa-palette" aria-hidden="true"></i>
+    </button>
 
-    <div class="weather-result">
-      <h2 id="city-name"></h2>
-      <p id="temperature"></p>
-      <p id="weather-description"></p>
-    </div>
-  </section>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="logo">
+            <i class="fas fa-cloud-sun" aria-hidden="true"></i>
+            <span>SkyVibe</span>
+        </div>
+    </header>
 
-  <script src="script.js"></script>
+    <!-- Main Content -->
+    <main class="main-container" id="main-content" role="main">
+        <div class="weather-card">
+            <!-- Search Section -->
+            <section class="search-container" role="search" aria-labelledby="search-label">
+                <label for="cityInput" id="search-label" class="sr-only">Enter city name</label>
+                <input
+                    type="text"
+                    class="search-input"
+                    id="cityInput"
+                    placeholder="Enter city name..."
+                    aria-describedby="search-help"
+                    autocomplete="address-level2"
+                />
+                <div id="search-help" class="sr-only">Type a city name and press Enter or click the search button</div>
+                <button
+                    class="search-btn"
+                    id="searchBtn"
+                    aria-label="Search for weather"
+                >
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </section>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage" role="alert" aria-live="polite"></div>
+
+            <!-- Loading State -->
+            <div class="loading" id="loading" aria-live="polite">
+                <div class="spinner" aria-hidden="true"></div>
+                <p>Getting weather data...</p>
+            </div>
+
+            <!-- Weather Display -->
+            <section class="weather-display" id="weatherDisplay" aria-live="polite">
+                <h1 class="city-name" id="cityName"></h1>
+
+                <div class="weather-main">
+                    <div class="weather-icon" id="weatherIcon" aria-hidden="true"></div>
+                    <div class="temperature" id="temperature" aria-label="Current temperature"></div>
+                </div>
+
+                <p class="weather-description" id="weatherDescription"></p>
+
+                <div class="weather-details" role="group" aria-label="Weather details">
+                    <div class="detail-item" tabindex="0">
+                        <div class="detail-label">Feels like</div>
+                        <div class="detail-value" id="feelsLike" aria-label="Feels like temperature"></div>
+                    </div>
+                    <div class="detail-item" tabindex="0">
+                        <div class="detail-label">Humidity</div>
+                        <div class="detail-value" id="humidity" aria-label="Humidity percentage"></div>
+                    </div>
+                    <div class="detail-item" tabindex="0">
+                        <div class="detail-label">Wind Speed</div>
+                        <div class="detail-value" id="windSpeed" aria-label="Wind speed"></div>
+                    </div>
+                    <div class="detail-item" tabindex="0">
+                        <div class="detail-label">Visibility</div>
+                        <div class="detail-value" id="visibility" aria-label="Visibility distance"></div>
+                    </div>
+                    <div class="detail-item" tabindex="0">
+                        <div class="detail-label">UV Index</div>
+                        <div class="detail-value" id="uvIndex" aria-label="UV index level"></div>
+                    </div>
+                    <div class="detail-item" tabindex="0">
+                        <div class="detail-label">Pressure</div>
+                        <div class="detail-value" id="pressure" aria-label="Atmospheric pressure"></div>
+                    </div>
+                </div>
+
+                <!-- 5-Hour Forecast -->
+                <div class="forecast-container" id="forecastContainer">
+                    <h2 class="forecast-title">5-Hour Forecast</h2>
+                    <div class="forecast-grid" id="forecastGrid" role="group" aria-label="5-hour weather forecast">
+                        <!-- Forecast items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="/src/script.js"></script>
 </body>
 </html>
